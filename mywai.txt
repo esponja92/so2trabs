@@ -1,0 +1,17 @@
+." Página do man do programa mywai
+.TH mywai 1 "15-nov-2016" "1.0" "mywai página manual"
+
+.SH NOME
+mywai - mostra o userid atual
+
+.SH USO
+whoami
+
+.SH DESCRIÇÃO
+Mostra o nome do usuário associado com o atual userID.
+
+.SH AUTOR
+Escrito por Hugo Dantas, Josué Pereira e Victor Peres
+
+.SH VER TAMBÉM
+whoami(1), id(1)

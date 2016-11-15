@@ -1,0 +1,31 @@
+." Página do man do programa mywhich
+.TH mywhich 1 "15-nov-2016" "1.0" "mywhich página manual"
+
+.SH NOME
+mywhich - localiza um comando
+
+.SH USO
+mywhich [-a] nome_do_arquivo ...
+
+.SH DESCRIÇÃO
+Retorna o caminho dos arquivos (ou links) em que os mesmos estão localizados. Procura pelos arquivos executáveis exclusivamente nos diretórios que estão na variável de ambiente PATH. Não segue links simbólicos.
+
+.SH OPÇÕES
+.IP -a
+retorna todos os caminhos dos arquivos que forem encontrados.
+
+.SH RETORNO
+.IP 0
+se todos os executáveis forem encontrados
+
+.BR
+.IP 1
+se um ou mais executáveis não forem existentes
+
+.BR
+.IP 2
+se uma opção inválida é especificada
+
+.BR
+.SH AUTOR
+Escrito por Hugo Dantas, Josué Pereira e Victor Peres
