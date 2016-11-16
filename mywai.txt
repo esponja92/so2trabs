@@ -2,14 +2,31 @@
 .TH mywai 1 "15-nov-2016" "1.0" "mywai página manual"
 
 .SH NOME
-mywai - mostra o userid atual
+mywai - mostra informações do usuário
 
 .SH USO
-whoami
+whoami [-ugiG]
 
 .SH DESCRIÇÃO
-Mostra o nome do usuário associado com o atual userID.
+Mostra informações do usuário associado com o atual userID.
 
+.SH OPÇÕES
+.IP -u
+mostra o nome do usuário atual
+
+.BR
+.IP -g
+mostra o nome do grupo atual
+
+.BR
+.IP -i
+em conjunto com [-ug], mostra o ID do usuário/grupo
+
+.BR
+.IP -G
+mostra todos os grupos do usuário atual
+
+.BR
 .SH AUTOR
 Escrito por Hugo Dantas, Josué Pereira e Victor Peres
 
