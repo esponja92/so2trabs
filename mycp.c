@@ -9,7 +9,7 @@
 
 
 static locale_t locale;
-
+int vflag = 0;
 
 void show_help() {
   printf("Uso: ./mycp [-R] ORIGEM... DESTINO\n");
@@ -17,6 +17,7 @@ void show_help() {
   printf("\n");
   printf("Argumentos opicionais disponíveis:\n");
   printf("  -R, -r   copia os diretórios recursivamente\n");
+  printf("  -v       explica o que o programa está fazendo (exibindo se é pasta, arquivo, ou link)\n");
   printf("  -h       mostra esta ajuda e finaliza\n");
 }
 
@@ -70,6 +71,9 @@ int copy_file(char * in_path, char * out_str) {
   // Copia arquivo char por char
   while ((c = fgetc(in_file)) != EOF)
     fputc(c, out_file);
+  
+  if(vflag)
+    printf("Arquivo: '%s' -> '%s'\n", in_path, out_path);
 
   free(filename);
   free(out_path);
@@ -80,6 +84,9 @@ int copy_file(char * in_path, char * out_str) {
 
 
 int copy_folder(char *in_dir, char *out_dir) {
+  if(vflag)
+    printf("Pasta: '%s' -> '%s'\n", in_dir, out_dir);
+
   DIR *dir = opendir(in_dir);
   struct dirent *ent;
   struct stat statbuf;
@@ -112,6 +119,8 @@ int copy_folder(char *in_dir, char *out_dir) {
         int size = 200;
         char *buffer = (char *) calloc(size, sizeof(char));
         readlink(in_path, buffer, size);
+        if(vflag)
+          printf("SLink: '%s' -> '%s'\n", in_path, out_path);
         symlink(buffer, out_path);
         free(buffer);
       } else {
@@ -137,11 +146,14 @@ void main(int argc, char * argv[]) {
   int rflag = 0;
   int c;
   opterr = 0;
-  while((c = getopt(argc, argv, "Rrh")) != -1)
+  while((c = getopt(argc, argv, "Rrvh")) != -1)
     switch(c) {
       case 'R':
       case 'r':
         rflag = 1;
+        break;
+      case 'v':
+        vflag = 1;
         break;
       case 'h':
         show_help();

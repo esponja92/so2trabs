@@ -5,18 +5,22 @@
 mycp - copia arquivos e diretórios
 
 .SH USO
-mycp [OPÇÕES] ORIGEM DESTINO
+mycp [-R] ORIGEM... DESTINO
 
 .SH DESCRIÇÃO
 Copia ORIGEM para DESTINO.
 
 .SH OPÇÕES
-.IP -r
+.IP -R,-r
 copia diretorios recursivamente.
 
 .BR
 .IP -v
-explica o que o programa está fazendo
+explica o que o programa está fazendo (exibindo se é pasta, arquivo, ou link)
+
+.BR
+.IP -h
+mostra a ajuda e finaliza
 
 .BR
 .SH AUTOR
