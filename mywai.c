@@ -4,8 +4,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
-#include <stdbool.h>
+// #include <stdbool.h>
 #include <grp.h>
+
+#define bool int
+#define true 1
+#define false 0
 
 int main(int argc, char** argv)
 {
