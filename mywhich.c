@@ -5,24 +5,29 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-int existeArquivoNoPath(char* caminhoDoArquivo){
-	return open(caminhoDoArquivo, O_RDONLY, S_IRUSR | S_IXOTH);
+int existeArquivoNoPath(char* caminhoDoArquivo, char* nome_do_arquivo){
+	char str[1000] = "";
+	strcat(str, caminhoDoArquivo);
+	strcat(str, "/");
+	strcat(str, nome_do_arquivo);
+	int open_return_value =  open(str, O_RDONLY, S_IRUSR | S_IXOTH);
+
+	return open_return_value;
+	
 }
 
 int main(int argc, char** argv){
 
 	char* s = getenv("PATH");
-	char* path = malloc(100*sizeof(char));
-	printf("s: %s\n", s);
+	char* path = (char*)malloc(100*sizeof(char));
 
 	path = strtok(s, ":");
-	printf(" primeiro strtok: %s\n", s);
 	while (path != NULL){
-		strcat(path, "/");
-		strcat(path, argv[1]);
-		printf(" buscando no %s\n", path);
-		if(existeArquivoNoPath(path) != -1){
-			printf("Achou aqui: %s\n", path);
+		if(existeArquivoNoPath(path, argv[1]) != -1){
+			strcat(path, "/");
+			strcat(path, argv[1]);
+			printf("%s\n", path);
+			break;
 		}
 		path = strtok(NULL, ":");
 	}
